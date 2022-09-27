@@ -31,17 +31,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($employees as $key=>$employee)
                             <tr>
-                                <td>1</td>
-                                <td>Monir</td>
-                                <td>20000</td>
+                                <td>{{ $key+1 }}</td>
+                                <td>{{ $employee->name }}</td>
+                                <td>{{ $employee->basic }}</td>
                                 <td>
                                     <a href="" class="btn btn-success"><i class="las la-edit"></i></a>
                                     <a href="" class="btn btn-danger"><i class="las la-times"></i></a>
                                 </td>
                             </tr>
+                            @endforeach
+
                         </tbody>
                     </table>
+                    {!! $employees->links() !!}
                 </div>
             </div>
         </div>
