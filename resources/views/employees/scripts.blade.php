@@ -26,6 +26,7 @@
                         if(res.status=='success'){
                             $('#addModal').modal('hide');
                             $('#addEmployeeForm')[0].reset();
+                            $('.table').load(location.href+' .table');
                         }
                     },
                     error:function(err){
