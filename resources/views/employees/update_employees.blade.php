@@ -3,6 +3,8 @@
     <form action="" method="POST" id="updateEmployeeForm">
         @csrf
         <input type="hidden" id="update_id">
+        <input type="hidden" name="_method" value="PUT">
+
         <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">

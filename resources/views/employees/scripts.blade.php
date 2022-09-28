@@ -9,7 +9,7 @@
     </script>
     <script>
         $(document).ready(function(){
-            //add employee
+        //Start Code For Add Employee
             $(document).on('click','.add_employee',function(event){
                 event.preventDefault();
                 let name = $('#name').val();
@@ -38,7 +38,9 @@
                     }
                 });
             });
-        //Show Employee Value in Edit Modal
+        //End Code For Add Employee
+
+        //Start Code For Show Employee Value in Edit Modal
             $(document).on('click','.update_employee_form',function(){
                 let id = $(this).data('id');
                 let name = $(this).data('name');
@@ -48,6 +50,41 @@
                 $('#update_name').val(name);
                 $('#update_basic').val(basic);
             });
+        //End Code For Show Employee Value in Edit Modal
+
+        //Start Code For Update Employee
+        $(document).on('click','.update_employee',function(event){
+                event.preventDefault();
+                let update_id = $('#update_id').val();
+                let update_name = $('#update_name').val();
+                let update_basic = $('#update_basic').val();
+                // console.log(name+basic);
+
+                $.ajax({
+                    url:'{{ route('employees.update',$employee->id)}}',
+                    method:'put',
+                    data:{
+                        update_id:update_id,
+                        update_name:update_name,
+                        update_basic:update_basic
+                    },
+                    success:function(res){
+                        if(res.status=='success'){
+                            $('#updateModal').modal('hide');
+                            $('#updateEmployeeForm')[0].reset();
+                            $('.table').load(location.href+' .table');
+                        }
+                    },
+                    error:function(err){
+                        let error = err.responseJSON;
+                        $.each(error.errors,function(index,value){
+                            $('.errorMessageContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
+                        });
+                    }
+                });
+            });
+        //End Code For Update Employee
+
 
         });
     </script>

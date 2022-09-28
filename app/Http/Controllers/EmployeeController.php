@@ -39,11 +39,12 @@ class EmployeeController extends Controller
     {
         $request->validate(
             [
-                'name'=>'required',
+                'name'=>'required|unique:employees',
                 'basic'=>'required',
             ],
             [
                 'name.required'=>'Name is required',
+                'name.unique'=>'Name has already taken.',
                 'basic.required'=>'Basic is required'
             ]
         );
@@ -90,7 +91,26 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $request->validate(
+            [
+                'update_name'=>'required|unique:employees,name,'.$request->update_id,
+                'update_basic'=>'required',
+            ],
+            [
+                'update_name.required'=>'Name is required',
+                'update_name.unique'=>'Name has already taken.',
+                'update_basic.required'=>'Basic is required'
+            ]
+        );
+
+        Employee::where('id',$request->update_id)->update([
+            'name'=>$request->update_name,
+            'basic'=>$request->update_basic,
+        ]);
+
+        return response()->json([
+            'status'=>'success'
+        ]);
     }
 
     /**
