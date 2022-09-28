@@ -37,7 +37,16 @@
                                 <td>{{ $employee->name }}</td>
                                 <td>{{ $employee->basic }}</td>
                                 <td>
-                                    <a href="" class="btn btn-success"><i class="las la-edit"></i></a>
+                                    <a href="" 
+                                        class="btn btn-success update_employee_form"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#updateModal"
+                                        data-id="{{ $employee->id }}"
+                                        data-name="{{ $employee->name }}"
+                                        data-basic="{{ $employee->basic }}"
+                                        >
+                                        <i class="las la-edit"></i>
+                                    </a>
                                     <a href="" class="btn btn-danger"><i class="las la-times"></i></a>
                                 </td>
                             </tr>
@@ -52,5 +61,6 @@
     </div>
     @include('employees.scripts')
     @include('employees.add_employees')
+    @include('employees.update_employees')
   </body>
 </html>

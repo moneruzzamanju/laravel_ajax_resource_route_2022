@@ -9,6 +9,7 @@
     </script>
     <script>
         $(document).ready(function(){
+            //add employee
             $(document).on('click','.add_employee',function(event){
                 event.preventDefault();
                 let name = $('#name').val();
@@ -37,5 +38,16 @@
                     }
                 });
             });
+        //Show Employee Value in Edit Modal
+            $(document).on('click','.update_employee_form',function(){
+                let id = $(this).data('id');
+                let name = $(this).data('name');
+                let basic = $(this).data('basic');
+
+                $('#update_id').val(id);
+                $('#update_name').val(name);
+                $('#update_basic').val(basic);
+            });
+
         });
     </script>
