@@ -58,7 +58,6 @@
                 let update_id = $('#update_id').val();
                 let update_name = $('#update_name').val();
                 let update_basic = $('#update_basic').val();
-                // console.log(name+basic);
 
                 $.ajax({
                     url:'{{ route('employees.update',$employee->id)}}',
@@ -84,6 +83,29 @@
                 });
             });
         //End Code For Update Employee
+
+        //Start Code For Delete Employee
+        $(document).on('click','.delete_employee',function(event){
+                event.preventDefault();
+                let employee_id = $(this).data('id');
+                if(confirm('Are you sure to delete data !!')){
+                    $.ajax({
+                    url:'{{ route('employees.destroy',$employee->id)}}',
+                    method:'delete',
+                    data:{
+                        employee_id:employee_id
+                    },
+                    success:function(res){
+                        if(res.status=='success'){
+                            $('.table').load(location.href+' .table');
+                        }
+                    }
+                });
+                }
+
+            });
+        //End Code For Delete Employee
+
 
 
         });
