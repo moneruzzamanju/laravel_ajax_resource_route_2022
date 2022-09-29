@@ -14,8 +14,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-       
+
        $employees = Employee::latest()->paginate(6);
+//       dd($employees);
        return view('employees.index',compact('employees'));
     }
 
@@ -121,7 +122,7 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        
+
         $employee->delete();
         return response()->json([
             'status'=>'success'

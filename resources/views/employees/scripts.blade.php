@@ -52,6 +52,7 @@
             });
         //End Code For Show Employee Value in Edit Modal
 
+            @if(count($employees) > 0)
         //Start Code For Update Employee
         $(document).on('click','.update_employee',function(event){
                 event.preventDefault();
@@ -105,7 +106,7 @@
 
             });
         //End Code For Delete Employee
-
+            @endif
 
 
         });

@@ -20,6 +20,7 @@
             <div class="col-md-8">
                 <h2 class="my-6 text-center mt-4">Laravel 9 Ajax CRUD</h2>
                 <a href="" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addModal">Add Employee</a>
+               @if(count($employees) > 0)
                 <div class="table-data">
                     <table class="table table-bordered">
                         <thead>
@@ -37,7 +38,7 @@
                                 <td>{{ $employee->name }}</td>
                                 <td>{{ $employee->basic }}</td>
                                 <td>
-                                    <a href="" 
+                                    <a href=""
                                         class="btn btn-success update_employee_form"
                                         data-bs-toggle="modal"
                                         data-bs-target="#updateModal"
@@ -47,7 +48,7 @@
                                         >
                                         <i class="las la-edit"></i>
                                     </a>
-                                    <a href="" 
+                                    <a href=""
                                     class="btn btn-danger delete_employee"
                                     data-id="{{ $employee->id }}"
                                     >
@@ -61,10 +62,15 @@
                     </table>
                     {!! $employees->links() !!}
                 </div>
+                @else
+                <h2>No Data found</h2>
+                @endif
             </div>
         </div>
     </div>
-    @include('employees.scripts')
+
+        @include('employees.scripts')
+
     @include('employees.add_employees')
     @include('employees.update_employees')
   </body>
